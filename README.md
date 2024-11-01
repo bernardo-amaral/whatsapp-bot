@@ -7,6 +7,8 @@
 
 Service for manager and send messages to specific devices.
 
+- **Whatsapp**: It emulate an webclient of the platform, to keep the user logged-in and send messages without the whatsapp API.
+
 ## Project setup
 
 ```bash
