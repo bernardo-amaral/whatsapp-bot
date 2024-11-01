@@ -88,7 +88,7 @@ curl --request GET \
 
 ```bash
 curl --request POST \
-  --url http://localhost:1234/whatsapp/message \
+  --url http://localhost:9000/whatsapp/message \
   --header 'Content-Type: application/json' \
   --data '{
 	"phoneNumber": "5551990000000",
