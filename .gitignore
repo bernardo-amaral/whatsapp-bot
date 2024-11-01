@@ -4,6 +4,8 @@
 /build
 /.wwebjs_auth
 /.wwebjs_cache
+upload.sh
+pm2.dev.json
 
 # Logs
 logs

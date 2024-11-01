@@ -11,6 +11,10 @@ interface IWhatsappMessage {
 export class WhatsappService implements OnModuleInit {
   private client: Client = new Client({
     authStrategy: new LocalAuth(),
+    puppeteer: {
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    },
   });
   private readonly logger = new Logger(WhatsappService.name);
 

@@ -17,10 +17,12 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "upload:dev": "bash upload.sh --app messages-ms --env dev --host 104.236.240.208 --user root --dir /apps/dev/messages-ms/dist --key ~/.ssh/dgo"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.3.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/event-emitter": "^2.1.1",
     "@nestjs/platform-express": "^10.0.0",
