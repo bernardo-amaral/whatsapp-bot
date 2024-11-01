@@ -67,8 +67,38 @@ https://pptr.dev/troubleshooting#chrome-doesnt-launch-on-linux
     xdg-utils wget
 ```
 
+## Project endpoints
+
+1. After the application stats, this route will be accessible:
+
+```bash
+curl --request GET \
+  --url http://localhost:9000/whatsapp/qrcode \
+  --header 'Content-Type: application/json' 
+```
+2. After open whatsapp app, and click on "Connected devices", will show this screen: 
+
+<p align="center">
+  <img src="./readme/whatsapp-allow-devices.jpg" height="350" alt="messages-ms" />
+</p>
+
+3. Scan the generated qrCode and allow the device to use your account.
+
+4. Sending messages:
+
+```bash
+curl --request POST \
+  --url http://localhost:1234/whatsapp/message \
+  --header 'Content-Type: application/json' \
+  --data '{
+	"phoneNumber": "5551990000000",
+	"text": "Mensagem automática de testes!"
+}'
+```
+
+
 ## TODO List
-[ ] Send SMS
-[ ] Send E-mails
-[ ] Mobile push communication protocol
+- [ ] Send SMS
+- [ ] Send E-mails
+- [ ] Mobile push communication protocol
 
