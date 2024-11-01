@@ -54,6 +54,8 @@ With Mau, you can deploy your application in just a few clicks, allowing you to 
 
 ## Server requirements
 
+- nodejs v20.+
+
 https://pptr.dev/troubleshooting#chrome-doesnt-launch-on-linux
 
 ```bash
@@ -101,4 +103,6 @@ curl --request POST \
 - [ ] Send SMS
 - [ ] Send E-mails
 - [ ] Mobile push communication protocol
+- [ ] Run on Docker
+- [ ] Integrate with RabbitMQ
 
