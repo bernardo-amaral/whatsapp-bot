@@ -5,6 +5,8 @@ import { IWhatsappMessage } from './interfaces';
 
 @Injectable()
 export class WhatsappService implements OnModuleInit {
+  private isAuthenticated = false;
+
   private client: Client = new Client({
     authStrategy: new LocalAuth(),
     puppeteer: {
@@ -26,11 +28,20 @@ export class WhatsappService implements OnModuleInit {
       this.logger.verbose('Whatsapp service connected with success');
     });
 
+    this.client.on('authenticated', () => {
+      this.isAuthenticated = true;
+      this.logger.verbose('Whatsapp authenticated with success');
+    });
+
     this.client.initialize();
   }
 
   sendMessage({ phoneNumber, message }: IWhatsappMessage) {
     try {
+      if (!this.isAuthenticated) {
+        throw Error('Whatsapp not authenticated yet');
+      }
+
       let number = phoneNumber.replace('@c.us', '');
       number = `${number}@c.us`;
 
