@@ -1,11 +1,7 @@
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { Client, LocalAuth } from 'whatsapp-web.js';
-
-interface IWhatsappMessage {
-  phoneNumber: string;
-  message: string;
-}
+import { IWhatsappMessage } from './interfaces';
 
 @Injectable()
 export class WhatsappService implements OnModuleInit {
@@ -34,14 +30,17 @@ export class WhatsappService implements OnModuleInit {
   }
 
   sendMessage({ phoneNumber, message }: IWhatsappMessage) {
-    let number = phoneNumber.replace('@c.us', '');
-    number = `${number}@c.us`;
+    try {
+      let number = phoneNumber.replace('@c.us', '');
+      number = `${number}@c.us`;
 
-    this.client.setDisplayName('..:: Bot ::..');
-    this.client.sendMessage(number, message);
+      this.client.sendMessage(number, message);
 
-    this.logger.verbose('Whatsapp message sent with success!');
-    this.logger.verbose({ number, message });
+      this.logger.verbose('Whatsapp message sent with success!');
+      this.logger.verbose({ number, message });
+    } catch (error: any) {
+      this.logger.error(error);
+    }
   }
 
   logout(): Promise<void> {

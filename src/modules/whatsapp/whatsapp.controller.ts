@@ -3,6 +3,7 @@ import { WhatsappService } from './whatsapp.service';
 import { OnEvent } from '@nestjs/event-emitter';
 import * as QRCode from 'qrcode';
 import { Response } from 'express';
+import { WhatsappMessageValidatorPipe } from './whatsapp.pipe';
 
 @Controller('whatsapp')
 export class WhatsappController {
@@ -36,7 +37,7 @@ export class WhatsappController {
   }
 
   @Post('message')
-  sendMessage(@Body() body: any) {
+  sendMessage(@Body(WhatsappMessageValidatorPipe) body: any) {
     this.logger.log('[POST] /message');
 
     this.whatsappService.sendMessage({
